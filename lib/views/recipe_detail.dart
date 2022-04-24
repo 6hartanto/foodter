@@ -54,6 +54,7 @@ class RecipeDetail extends StatelessWidget {
                         ),
                       ],
                     ),
+                    FavoriteButton(recipe: recipe),
                   ],
                 ),
               ),
@@ -112,5 +113,37 @@ class RecipeDetail extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+class FavoriteButton extends StatefulWidget {
+  const FavoriteButton({Key? key, required Recipes recipe}) : super(key: key);
+
+  @override
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool _isFavorited = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(0.0),
+          child: IconButton(
+            icon: const Icon(Icons.favorite),
+            color: _isFavorited ? Colors.red : Colors.black,
+            onPressed: () {
+              setState(() {
+                _isFavorited = !_isFavorited;
+              });
+            },
+          ),
+        ),
+      ],
+    );
   }
 }
